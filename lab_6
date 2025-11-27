@@ -1,0 +1,42 @@
+class Machine:
+    def __init__(self, effficiency, price, mid_price_detail):
+        self.effficiency = effficiency
+        self.price = price
+        self.mid_price_detail = mid_price_detail
+
+    def payback_n_details(self):
+        return self.price / self.mid_price_detail
+
+    def payback_time(self):
+        return self.payback_n_details() / self.effficiency
+
+
+class Frezer_Machine(Machine):
+    
+    def __init__(self, efficiency, stoimost, mid_price_detail, rent):
+        super().__init__(efficiency, stoimost, mid_price_detail)
+        self.rent = rent
+    
+    def payback_rent(self):
+        return self.rent / self.mid_price_detail
+
+    
+class CNC_Machine(Machine):
+    
+    def __init__(self, efficiency, stoimost, mid_price_detail, rent, mass):
+        super().__init__(efficiency, stoimost, mid_price_detail)
+        self.mass = mass 
+        self.rent = rent
+    
+    def payback_rent_in_time(self):
+        return self.rent / self.mid_price_detail / self.effficiency
+
+cnc = CNC_Machine(5, 50, 10, 25, 1.5)
+
+frezer = Frezer_Machine(5, 50, 10, 25)
+
+print(cnc.payback_n_details())
+print(cnc.payback_time())
+print(cnc.payback_rent_in_time())
+print()
+print(frezer.payback_rent())
